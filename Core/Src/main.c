@@ -109,18 +109,17 @@ int main(void)
 
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
 
-  /* 进阶 A：上电从中位开始，之后靠两个按键调整 */
-  float angle = 90.0f;
-  ShowAndSend(angle);
-
-  /* 定角序列（录视频需要时把上面两行注释掉、放开下面这段）
+  /* 第一段：定角序列 0→45→90→135→180，每点停 1 秒（必做项，录视频要用） */
   const float seq[5] = {0.0f, 45.0f, 90.0f, 135.0f, 180.0f};
   for (int i = 0; i < 5; i++)
   {
     ShowAndSend(seq[i]);
     HAL_Delay(1000);
   }
-  */
+
+  /* 第二段：回到中位，进入按键模式（选做 A） */
+  float angle = 90.0f;
+  ShowAndSend(angle);
   /* USER CODE END 2 */
 
   /* Infinite loop */
